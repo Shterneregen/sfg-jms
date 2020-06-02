@@ -4,10 +4,6 @@ plugins {
     id "java"
 }
 
-ext {
-    artemisServerVersion = "2.12.0"
-}
-
 group = "guru.springframework"
 version = "0.0.1-SNAPSHOT"
 sourceCompatibility = "1.8"
@@ -25,9 +21,7 @@ repositories {
 dependencies {
     implementation(
             "org.springframework.boot:spring-boot-starter-artemis",
-            "org.springframework.boot:spring-boot-starter-web",
-            "org.apache.activemq:artemis-server:$artemisServerVersion",
-            "org.apache.activemq:artemis-jms-server:$artemisServerVersion"
+            "org.springframework.boot:spring-boot-starter-web"
     )
     compileOnly "org.projectlombok:lombok"
     developmentOnly "org.springframework.boot:spring-boot-devtools"
