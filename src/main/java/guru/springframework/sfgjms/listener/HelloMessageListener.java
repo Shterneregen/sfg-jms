@@ -32,12 +32,16 @@ public class HelloMessageListener {
 
     @JmsListener(destination = JmsConfig.SEND_RCV_QUEUE)
     public void listenHello(@Payload HelloWorldMessage helloWorldMessage,
-                            @Headers MessageHeaders headers, Message message) throws JMSException {
+                            @Headers MessageHeaders headers, Message jmsMessage,
+                            org.springframework.messaging.Message springMessage) throws JMSException {
         HelloWorldMessage payloadMessage = HelloWorldMessage.builder()
                 .id(UUID.randomUUID())
                 .message("World!")
                 .build();
 
-        jmsTemplate.convertAndSend(message.getJMSReplyTo(), payloadMessage);
+//        example to use Spring Message type
+//        jmsTemplate.convertAndSend((Destination) springMessage.getHeaders().get("jms_replyTo"), "got it!");
+
+        jmsTemplate.convertAndSend(jmsMessage.getJMSReplyTo(), payloadMessage);
     }
 }
