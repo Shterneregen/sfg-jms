@@ -12,7 +12,7 @@ public class JmsConfig {
     public static final String MY_QUEUE = "my-queue";
     public static final String SEND_RCV_QUEUE = "reply-back-to-me";
 
-    @Bean
+    @Bean // Serialize message content to json using TextMessage
     public MessageConverter messageConverter() {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.TEXT);

@@ -26,7 +26,7 @@ Credentials:
 
 ---
 
-###### Notes:
+##### Notes:
 
 `@JmsListener` - Annotation that marks a method to be the target of a JMS message listener on the specified `destination`
 
@@ -45,6 +45,16 @@ ActiveMQServer server = ActiveMQServers.newActiveMQServer(new ConfigurationImpl(
         .addAcceptorConfiguration("invm", "vm://0"));
 server.start();
 ```
+
+---
+
+##### Q&A:
+
+**If the JMS Listener throws an unchecked exception, what will happen to the message on the broker?**  
+JMS is transactional. In the event of an exception, the message will remain on the queue and available for another message consumer.
+
+**Can non-Java clients process JMS messages?**  
+Depends on the Message broker, but generally yes. The major JMS message brokers have clients for most popular technologies.
 
 ---
 Original repo: 
